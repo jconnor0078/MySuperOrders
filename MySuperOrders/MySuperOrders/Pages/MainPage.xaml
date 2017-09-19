@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MySuperOrders.Pages.MainPage"
+             BackgroundColor="{StaticResource BackgroundColor}"
+             Title="Mis Pedidos"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <ListView  
+        ItemsSource="{Binding Orders}"
+        HasUnevenRows="true">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid Padding="8" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Grid.Column="0" 
+                            WidthRequest="50"
+                            HeightRequest="50"
+                            VerticalOptions="Start"
+                            Source="icon.png"/>
+
+                        <StackLayout Grid.Column="1">
+                            <Label
+                                VerticalOptions="Center"
+                                TextColor="{StaticResource FontColor}"
+                                Text="{Binding Title}"/>
+                            <Label VerticalOptions="Center"
+                                   TextColor="{StaticResource FontColor}"
+                                   Text="{Binding Description}"/>
+
+                            <Label
+                                VerticalOptions="Center"
+                                TextColor="{StaticResource MainColor}"
+                                Text="{Binding DeliveryDate, StringFormat='{0:yyy/MM/dd}'}"/>
+                        </StackLayout>
+
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="ic_action_add.png" Command="{Binding GoToCommand}" CommandParameter="NewOrderPage"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+
+</ContentPage>
