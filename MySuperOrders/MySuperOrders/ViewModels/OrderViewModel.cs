@@ -15,5 +15,9 @@ namespace MySuperOrders.ViewModels
         public DateTime DeliveryDate { get; set; }
         public string DeliveryInformation { get; set; }
         public string Client { get; set; }
+
+        public string Phone { get; set; }
+
+        public bool IsDelivered { get; set; }
     }
 }

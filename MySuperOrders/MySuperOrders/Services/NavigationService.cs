@@ -46,5 +46,17 @@ namespace MySuperOrders.Services
             await App.Navigator.PushAsync(page);
         }
 
+        internal void SetMainPage(string pageName)
+        {
+            switch (pageName)
+            {
+                case "MasterPage":
+                    App.Current.MainPage = new MasterPage();
+                    break;
+                default:
+                    break;
+            }
+          
+        }
     }
 }

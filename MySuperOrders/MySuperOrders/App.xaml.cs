@@ -16,7 +16,7 @@ namespace MySuperOrders
         {
             InitializeComponent();
 
-            MainPage = new MySuperOrders.Pages.MasterPage();
+            MainPage = new MySuperOrders.Pages.WelcomePage();
         }
 
         protected override void OnStart()

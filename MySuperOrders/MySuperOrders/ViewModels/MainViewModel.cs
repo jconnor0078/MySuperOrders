@@ -32,9 +32,18 @@ namespace MySuperOrders.ViewModels
             get { return new RelayCommand<string>(GoTo); }
         }
 
+        public ICommand StartCommand
+        {
+            get { return new RelayCommand(Start); }
+        }
+
         private void GoTo(string pageName)
         {
             navigationService.Navigate(pageName);
+        }
+        private void Start()
+        {
+            navigationService.SetMainPage("MasterPage");
         }
         #endregion
 
@@ -89,6 +98,8 @@ namespace MySuperOrders.ViewModels
                 });
             }
         }
+
+
         #endregion
 
     }

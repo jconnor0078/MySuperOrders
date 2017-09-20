@@ -21,11 +21,7 @@
                    Text="Fecha Entrega"/>
             <DatePicker BackgroundColor="White"/>
 
-            <Button
-                HeightRequest="50"
-                BorderRadius="25"
-                BackgroundColor="{StaticResource MainColor}"
-                TextColor="{StaticResource MenuFontColor}"
+            <Button 
                 Text="Guardar"/>
 
         </StackLayout>
