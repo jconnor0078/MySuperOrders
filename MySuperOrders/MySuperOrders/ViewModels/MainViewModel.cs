@@ -14,14 +14,20 @@ namespace MySuperOrders.ViewModels
     public class MainViewModel
     {
         NavigationService navigationService;
+        ApiService apiService = new ApiService();
+     
+
         public MainViewModel()
         {
             navigationService = new NavigationService();
+            apiService = new ApiService();
+            Orders = new ObservableCollection<OrderViewModel>();
             LoadMenu();
-            LoadData();
+           
         }
 
         #region Properties
+        public OrderViewModel newOrder { get; private set; }
         public ObservableCollection<MenuItemViewModel> Menu { get; set; }
         public ObservableCollection<OrderViewModel> Orders { get; set; }
         #endregion
@@ -39,10 +45,29 @@ namespace MySuperOrders.ViewModels
 
         private void GoTo(string pageName)
         {
+            switch (pageName)
+            {
+                case "NewOrderPage":
+                    newOrder = new OrderViewModel();
+                    break;
+                default:
+                    break;
+            }
             navigationService.Navigate(pageName);
         }
-        private void Start()
+        private async void Start()
         {
+            var list= await apiService.GetAllOrders();
+            Orders.Clear();
+            foreach (var item in list)
+            {
+                Orders.Add(new OrderViewModel()
+                {
+                    Title = item.Title,
+                    DeliveryDate = item.DeliveryDate!=null?item.DeliveryDate.Value: DateTime.MinValue,
+                    Description = item.Description
+                });
+            }       
             navigationService.SetMainPage("MasterPage");
         }
         #endregion
@@ -85,19 +110,19 @@ namespace MySuperOrders.ViewModels
             });
         }
 
-        private void LoadData()
-        {
-            Orders = new ObservableCollection<OrderViewModel>();
-            for (int i = 0; i < 5; i++)
-            {
-                Orders.Add(new OrderViewModel()
-                {
-                    Title = "Lorem Ipsum",
-                    DeliveryDate = DateTime.Today,
-                    Description = "Lorem ipsum dolor sit amet, consectetur adpiscing elit."
-                });
-            }
-        }
+        //private void LoadData()
+        //{
+        //    Orders = new ObservableCollection<OrderViewModel>();
+        //    for (int i = 0; i < 5; i++)
+        //    {
+        //        Orders.Add(new OrderViewModel()
+        //        {
+        //            Title = "Lorem Ipsum",
+        //            DeliveryDate = DateTime.Today,
+        //            Description = "Lorem ipsum dolor sit amet, consectetur adpiscing elit."
+        //        });
+        //    }
+        //}
 
 
         #endregion

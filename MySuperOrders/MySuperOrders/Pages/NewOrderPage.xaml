@@ -3,27 +3,48 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MySuperOrders.Pages.NewOrderPage"
              BackgroundColor="{StaticResource BackgroundColor}"
-             Title="Mis Pedidos"
+             Title="Nuevo Pedido"
              BindingContext="{Binding Main, Source={StaticResource Locator}}">
-    <ScrollView>
+
+    <ScrollView BindingContext="{Binding newOrder}">
         <StackLayout Padding="8">
             
             <Label TextColor="{StaticResource FontColor}"
                    Text="Titulo"/>
             <Entry TextColor="{StaticResource FontColor}"
-                   BackgroundColor="White"/>
-
+                   BackgroundColor="White"
+                   Text="{Binding Title, Mode=TwoWay}"/>
+            
+            <Label TextColor="{StaticResource FontColor}"
+                   Text="Cliente"/>
+            <Entry TextColor="{StaticResource FontColor}"
+                   BackgroundColor="White"
+                   Text="{Binding Client, Mode=TwoWay}"/>
+            
             <Label TextColor="{StaticResource FontColor}"
                    Text="Descripcion"/>
             <Editor TextColor="{StaticResource FontColor}"
-                   BackgroundColor="White"/>
+                   BackgroundColor="White"
+                    Text="{Binding Description, Mode=TwoWay}"/>
+
+            <Label TextColor="{StaticResource FontColor}"
+                   Text="Datos de Envio"/>
+            <Editor TextColor="{StaticResource FontColor}"
+                   BackgroundColor="White"
+                    Text="{Binding DeliveryInformation,  Mode=TwoWay}"/>
+            
             <Label TextColor="{StaticResource FontColor}"
                    Text="Fecha Entrega"/>
-            <DatePicker BackgroundColor="White"/>
+            <DatePicker 
+                BackgroundColor="White"
+                Date="{Binding DeliveryDate, Mode=TwoWay}">
+                <DatePicker.Format>yyyy-MM-dd</DatePicker.Format>
+            </DatePicker>
 
-            <Button 
+            <Button Command="{Binding SaveCommand}"
                 Text="Guardar"/>
 
         </StackLayout>
     </ScrollView>
+    
 </ContentPage>
