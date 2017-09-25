@@ -23,6 +23,7 @@ namespace MySuperOrders.ViewModels
             apiService = new ApiService();
             Orders = new ObservableCollection<OrderViewModel>();
             LoadMenu();
+            LoadData();
            
         }
 
@@ -55,20 +56,24 @@ namespace MySuperOrders.ViewModels
             }
             navigationService.Navigate(pageName);
         }
-        private async void Start()
+        private async void LoadData()
         {
-            var list= await apiService.GetAllOrders();
+            var list = await apiService.GetAllOrders();
             Orders.Clear();
             foreach (var item in list)
             {
                 Orders.Add(new OrderViewModel()
                 {
                     Title = item.Title,
-                    DeliveryDate = item.DeliveryDate!=null?item.DeliveryDate.Value: DateTime.MinValue,
+                    DeliveryDate = item.DeliveryDate != null ? item.DeliveryDate.Value : DateTime.MinValue,
                     Description = item.Description
                 });
-            }       
+            }
+        }
+        private void Start()
+        {
             navigationService.SetMainPage("MasterPage");
+           // LoadData();
         }
         #endregion
 

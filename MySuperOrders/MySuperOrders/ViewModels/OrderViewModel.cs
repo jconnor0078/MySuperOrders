@@ -39,6 +39,7 @@ namespace MySuperOrders.ViewModels
         public ICommand SaveCommand
         {
             get { return new RelayCommand(Save); }
+
         }
 
         private async void Save()
@@ -56,7 +57,7 @@ namespace MySuperOrders.ViewModels
                     IsDelivered = false
                 });
                 await dialogService.ShowMessage("El pedido ha sido creado", "informacion");
-                
+                navigationService.Navigate("MainPageRefresh");
                 
                 
             }

@@ -31,6 +31,10 @@ namespace MySuperOrders.Services
                 case "MainPage":
                     await App.Navigator.PopToRootAsync();
                     break;
+                case "MainPageRefresh":
+                   // await App.Navigator.PopToRootAsync();
+                    App.Master = new MasterPage() { Master= new MenuPage() { BindingContext = new ViewModels.MainViewModel() }, Detail = new Pages.MainPage() { BindingContext = new ViewModels.MainViewModel() } };
+                    break;
                 default:
                     await App.Navigator.PopToRootAsync();
                     break;
