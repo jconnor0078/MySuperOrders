@@ -22,6 +22,7 @@ namespace MySuperOrders.ViewModels
             navigationService = new NavigationService();
             apiService = new ApiService();
             Orders = new ObservableCollection<OrderViewModel>();
+            newOrder = new ViewModels.OrderViewModel();
             LoadMenu();
             LoadData();
            

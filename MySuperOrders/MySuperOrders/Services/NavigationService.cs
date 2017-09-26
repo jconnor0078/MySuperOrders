@@ -32,8 +32,8 @@ namespace MySuperOrders.Services
                     await App.Navigator.PopToRootAsync();
                     break;
                 case "MainPageRefresh":
-                   // await App.Navigator.PopToRootAsync();
-                    App.Master = new MasterPage() { Master= new MenuPage() { BindingContext = new ViewModels.MainViewModel() }, Detail = new Pages.MainPage() { BindingContext = new ViewModels.MainViewModel() } };
+                    await App.Navigator.PopToRootAsync();
+                    App.Navigator.CurrentPage.BindingContext = new ViewModels.MainViewModel(); 
                     break;
                 default:
                     await App.Navigator.PopToRootAsync();
@@ -41,11 +41,11 @@ namespace MySuperOrders.Services
             }
         }
 
-        private static async Task Navigate<T>(T page) where T: Page
+        private static async Task Navigate<T>(T page) where T : Page
         {
-           // NavigationPage.SetHasBackButton(page, false);
-          //  NavigationPage.SetBackButtonTitle(page, "Atrás"); //IOS
-    
+            // NavigationPage.SetHasBackButton(page, false);
+            //  NavigationPage.SetBackButtonTitle(page, "Atrás"); //IOS
+
 
             await App.Navigator.PushAsync(page);
         }
@@ -60,7 +60,7 @@ namespace MySuperOrders.Services
                 default:
                     break;
             }
-          
+
         }
     }
 }
